@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PttWebCrawler import *
-import re
+import re, json
 
 def contfunc(string):
     needed = re.search('用書(.+?)評分方式',string, re.S).group(1) if re.search('用書(.+?)評分方式',string, re.S)!=None else ''
@@ -22,4 +22,8 @@ def titlefunc(string):
     else:
         return string
 
-PttWebCrawler('NCHU-Courses',True , start=1, end=-1, contentCallback=contfunc, titleCallback=titlefunc)
+c = PttWebCrawler('NCHU-Courses',True , start=149, end=150, contentCallback=contfunc, titleCallback=titlefunc)
+with open(c.getFilename(), 'r', encoding='utf-8') as f:
+    jfile = json.load(f)
+    result = list(filter(lambda x:'genra' in x['article_title'], jfile['articles']))
+    json.dump(result, open('cleanCourse.json', 'w'))
