@@ -11,8 +11,8 @@ class InternSpider(scrapy.Spider):
     def parse(self, response):
         res = BeautifulSoup(response.body)
         學歷, 地區, 薪資 = res.select('.list_black')[::3], res.select('.list_black')[1::3], res.select('.list_black')[2::3]
-        for i in zip(res.select('.style2 a')[1::2], 地區, 薪資):
-            yield scrapy.Request('http://'+self.allowed_domains[0] + i[0]['href'], callback=self.parse_detail,meta={'地區': i[1].text.strip(), '薪資':i[2].text.strip()})
+        for i in zip(res.select('.style2 a')[1::2], 地區, 薪資, res.select('.style2 a')[::2]):
+            yield scrapy.Request('http://'+self.allowed_domains[0] + i[0]['href'], callback=self.parse_detail,meta={'地區': i[1].text.strip(), '薪資':i[2].text.strip(), 'company':i[3]['title'].split()[0].strip()})
 
     def parse_detail(self, response):
         res = BeautifulSoup(response.body)
@@ -23,6 +23,7 @@ class InternSpider(scrapy.Spider):
         internItem['地區'] = response.meta['地區']
         internItem['薪資'] = response.meta['薪資']
         internItem['job'] = data['job']
+        internItem['company'] = response.meta['company']
         internItem['工作時間'] = data.get('工作時間', None)
         internItem['工作性質'] = data.get('工作性質', None)
         internItem['到職日期'] = data.get('到職日期', None)
