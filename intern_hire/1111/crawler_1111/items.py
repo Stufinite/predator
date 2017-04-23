@@ -13,6 +13,7 @@ class Crawler1111Item(scrapy.Item):
     地區 = scrapy.Field()
     薪資 = scrapy.Field()
     job = scrapy.Field()
+    company = scrapy.Field()
     工作時間 = scrapy.Field()
     工作性質 = scrapy.Field()
     到職日期 = scrapy.Field()
