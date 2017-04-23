@@ -1,0 +1,44 @@
+[
+  {
+    "city": "台中",
+    "types": {
+      "小吃": [
+        {
+          "restaurant": "3Q印超雞",
+          "url": "http://www.gomaji.com/Taichung_p127443.html",
+          "delicacy": "",
+          "price": 85
+        }
+      ],
+      "火鍋": [
+        {
+          "restaurant": "青森鍋物",
+          "url": "http://www.gomaji.com/Taichung_p127443.html",
+          "delicacy": "",
+          "price": 85
+        }
+      ]
+    }
+  },
+  {
+    "city": "台北",
+    "types": {
+      "小吃": [
+        {
+          "restaurant": "316刈包",
+          "url": "http://www.gomaji.com/Taichung_p127443.html",
+          "delicacy": "",
+          "price": 85
+        }
+      ],
+      "火鍋": [
+        {
+          "restaurant": "藍象廷泰鍋",
+          "url": "http://www.gomaji.com/Taichung_p127443.html",
+          "delicacy": "",
+          "price": 85
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "台中": {
+    "小吃": [
+      {
+        "restaurant": "3Q印超雞",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      },
+      {
+        "restaurant": "3Q印超雞2",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      }
+      ...
+      還有很多餐廳
+      ...  
+    ],
+    "火鍋": [
+      {
+        "restaurant": "青森鍋物",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      },
+      {
+        "restaurant": "青森鍋物2",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      }
+    ]
+  },
+  "台北": {
+    "小吃": [
+      {
+        "restaurant": "316刈包",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      },
+      {
+        "restaurant": "316刈包2",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      }
+    ],
+    "火鍋": [
+      {
+        "restaurant": "藍象廷泰鍋",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      },
+      {
+        "restaurant": "藍象廷泰鍋2",
+        "url": "http://www.gomaji.com/Taichung_p127443.html",
+        "delicacy": "",
+        "price": 85
+      }
+    ]
+  }
+  ...
+  還有很多縣市
+  ...
+}
