@@ -15,30 +15,16 @@ class InternSpider(scrapy.Spider):
             yield scrapy.Request('http://'+self.allowed_domains[0] + i[0]['href'], callback=self.parse_detail,meta={'地區': i[1].text.strip(), '薪資':i[2].text.strip(), 'company':i[3]['title'].split()[0].strip()})
 
     def parse_detail(self, response):
-        res = BeautifulSoup(response.body)
-        title = list(map(lambda x:(x.text).replace('：', '').strip(), res.select('dl dt')))[:16] + ['url', 'job']
-        content = list(map(lambda x:(x.text).replace('：', '').strip(), res.select('dl dd')))[:16] + [response.url, res.select('div h1')[0].text.strip()]
+        res = BeautifulSoup(response.text)
+        title = list(map(lambda x:(x.text).replace('：', '').strip(), res.select('#midblock dt'))) + ['url', 'job']
+        content = list(map(lambda x:(x.text).replace('：', '').strip(), res.select('#midblock dd'))) + [response.url, res.select('div h1')[0].text.strip()]
+        if len(title) != len(content):
+            with open('error.log','a') as f:
+                f.write(response.url + '\n')
+            return
         data = dict(zip(title, content))
         internItem = Crawler1111Item()
-        internItem['地區'] = response.meta['地區']
-        internItem['薪資'] = response.meta['薪資']
-        internItem['job'] = data['job']
-        internItem['company'] = response.meta['company']
-        internItem['工作時間'] = data.get('工作時間', None)
-        internItem['工作性質'] = data.get('工作性質', None)
-        internItem['到職日期'] = data.get('到職日期', None)
-        internItem['休假制度'] = data.get('休假制度', None)
-        # internItem['工作待遇'] = data.get('工作待遇', None)
-        internItem['學歷限制'] = data.get('學歷限制', None)
-        internItem['工作說明'] = data.get('工作說明', None)
-        internItem['職務類別'] = data.get('職務類別', None)
-        internItem['科系限制'] = data.get('科系限制', None)
-        internItem['聯絡人員'] = data.get('聯絡人員', None)
-        internItem['需求人數'] = data.get('需求人數', None)
-        internItem['url'] = data['url']
-        internItem['身份類別'] = data.get('身份類別', None)
-        internItem['工作地點'] = data.get('工作地點', None)
-        internItem['實習時段'] = data.get('實習時段', None)
-        internItem['工作經驗'] = data.get('工作經驗', None)
-        internItem['職缺更新'] = data.get('職缺更新', None)
+        data.update(response.meta)
+        for i in internItem.fields.keys():
+            internItem.setdefault(i, data.get(i, None))
         return internItem
